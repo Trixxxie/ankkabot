@@ -1,0 +1,26 @@
+{
+  "name": "ankkabot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trixxxie/ankkabot.git"
+  },
+  "author": "Trixxie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Trixxxie/ankkabot/issues"
+  },
+  "homepage": "https://github.com/Trixxxie/ankkabot#readme",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "common-tags": "^1.8.0",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security"
+  }
+}
