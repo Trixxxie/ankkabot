@@ -8,8 +8,6 @@ module.exports = {
     run: async (client, message, args) => {
 
         message.delete()
-        const logChannel = client.channels.cache.get('761621293250379826');
-        const badlog = client.channels.cache.get('761729516644728832');
 
         if(message.member.hasPermission('BAN_MEMBERS')){
 
@@ -49,19 +47,11 @@ module.exports = {
                 .setDescription(stripIndents`**Kiukkuisen viestin saaja:** **__SINÄ__** 
                 **- Syy:** ${args.slice(1).join(" ")}`);
 
-                logChannel.send(embed);
+                message.channel.send(embed);
                 toBan.user.send(warning);
         } else {
-            message.channel.send(`${message.author} mitähän sä äijjä koitat tehdä??`)
-
-            const badlogmsg = new MessageEmbed()
-                .setTitle(`Komennon esto [WARN]`)
-                .setDescription(`**Käyttäjä:** ${message.author}\n**Kanava:** ${message.channel.toString()}\n**Koko viesti:** ${message}`)
-                .setTimestamp()
-                .setThumbnail(message.author.displayAvatarURL());
-                
-
-            badlog.send(badlogmsg);
+            message.channel.send(`${message.author} KWAAK BITCH!`)
+            .then(msg => msg.delete({timer: 2500}));
         }
     }
 }

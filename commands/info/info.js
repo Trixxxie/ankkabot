@@ -20,7 +20,7 @@ module.exports = {
                 .addFields(
                     {name: 'ID', value: user.id},
                     {name: 'Käyttäjä luotu', value: user.user.createdAt},
-                    {name: 'Liittynyt Paskakoodi yhteisöön', value: user.joinedAt},
+                    {name: 'Liittynyt discord serverille', value: user.joinedAt},
                     {name: 'Viimeisin viesti', value: user.lastMessage},
                     {name: 'Tila', value: user.presence.status}
                 );
@@ -39,7 +39,7 @@ module.exports = {
                 .addFields(
                     {name: 'ID', value: otherUser.id},
                     {name: 'Käyttäjä luotu', value: otherUser.user.createdAt},
-                    {name: 'Liittynyt Paskakoodi yhteisöön', value: otherUser.joinedAt},
+                    {name: 'Liittynyt discord serverille', value: otherUser.joinedAt},
                     {name: 'Viimeisin viesti', value: otherUser.lastMessage},
                     {name: 'Tila', value: otherUser.presence.status}
                 );

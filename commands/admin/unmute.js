@@ -6,12 +6,10 @@ module.exports = {
     run: async (client, message, args) => {
 
         message.delete()
-        const logChannel = client.channels.cache.get('761621293250379826');
-        const badlog = client.channels.cache.get('761729516644728832');
 
         if(message.member.hasPermission('KICK_MEMBERS')){
             if (!args[0]) {
-                return message.reply("Ketä lähtee katkasulta kotiin?")
+                return message.reply("Ketä lähtee hiljennykseltä pois?")
                     .then(m => m.delete({timeout: 5000}));
             }
 
@@ -27,24 +25,16 @@ module.exports = {
                 .setThumbnail(toMute.user.displayAvatarURL())
                 .setFooter(message.member.displayName, message.author.displayAvatarURL())
                 .setTimestamp()
-                .setTitle(`${message.member.displayName} lopetti katkaisuhoidon :loud_sound:`)
+                .setTitle(`${message.member.displayName} poisti hiljennyksen :loud_sound:`)
                 .setDescription(`**Poistettu hiljennys:** ${toMute} 
                 **- ID:** ${toMute.id}`);
 
-            logChannel.send(embed);
+            message.channel.send(embed);
             toMute.roles.remove(toMute.guild.roles.cache.find(i => i.id === '761362208185253898'))
 
         } else {
-            message.channel.send(`${message.author} mitähän sä äijjä koitat tehdä??`)
-
-            const badlogmsg = new MessageEmbed()
-                .setTitle(`Komennon esto [UNMUTE]`)
-                .setDescription(`**Käyttäjä:** ${message.author}\n**Kanava:** ${message.channel.toString()}\n**Koko viesti:** ${message}`)
-                .setTimestamp()
-                .setThumbnail(message.author.displayAvatarURL());
-                
-
-            badlog.send(badlogmsg);
+            message.channel.send(`${message.author} KWAAK BITCH!`)
+            .then(msg => msg.delete({timer: 2500}));
         }
 
     }
