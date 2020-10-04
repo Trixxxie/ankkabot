@@ -1,5 +1,6 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const { config } = require("dotenv");
+const fs = require("fs");
 
 client = new Client({
     disableEveryone: true
@@ -28,8 +29,14 @@ client.on('ready', () => {
 
 // KOMENTO JUTTUJA
 client.on("message", async message => {
-    const prefix = "-";
+    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 
+    if (!prefixes[message.guild.id]){
+        prefixes[message.guild.id] = {
+            prefixes: "-"
+        };
+    }
+    let prefix = prefixes[message.guild.id].prefixes;
     if (message.author.bot) return;
     if (!message.guild) return;
     if (!message.content.startsWith(prefix)) return;
