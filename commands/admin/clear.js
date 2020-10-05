@@ -13,11 +13,6 @@ module.exports = {
             if (!args[0]) {
                 return message.reply("Niin montako viestiä?")
                     .then(m => m.delete({timeout: 5000}));
-            }
-
-            if (!args[1]) {
-                return message.reply("Onko tähän syy? :confused:")
-                .then(m => m.delete({timeout: 5000}));
             } else {
 
                 message.channel.bulkDelete(args[0])
