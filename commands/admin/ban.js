@@ -37,17 +37,6 @@ module.exports = {
                 return message.reply("En pysty tuota ukkoa heittää jäähylle :sob:")
                 .then(m => m.delete({timeout: 5000}));
             }
-
-            const embed = new MessageEmbed()
-                .setColor("#ff0000")
-                .setThumbnail(toBan.user.displayAvatarURL())
-                .setFooter(message.member.displayName, message.author.displayAvatarURL())
-                .setTimestamp()
-                .setTitle(`${message.member.displayName} pisti paskat nippuun <:paskaa:761618140068184095>`)
-                .setDescription(stripIndents`**Paska ukko:** ${toBan} 
-                **- ID:** ${toBan.id}
-                **- Syy:** ${args.slice(1).join(" ")}`);
-
             const promptEmbed = new MessageEmbed()
                 .setColor("GREEN")
                 .setDescription(`Heitetäänkö ${toBan} veks oikeasti?`)
@@ -55,7 +44,7 @@ module.exports = {
             await message.channel.send(promptEmbed).then(async msg => {
 
             const emoji = await promptMessage(msg, message.author, 30, ["✅", "❌"]);
-
+                
             // Verification stuff
                 if (emoji === "✅") {
                     msg.delete();
@@ -65,7 +54,41 @@ module.exports = {
                             if (err) return message.channel.send(`<:paskaa:761618140068184095> Nyt meni joku puihin tässäkin paskassa koodissa ${err}`)
                         });
 
-                    message.channel.send(embed);
+                        if(!message.member.guild.channels.cache.find(ch => ch.name === 'ankkaloki')){
+                            const jatkossa = new MessageEmbed()
+                                .setColor("RED")
+                                .setThumbnail(client.user.displayAvatarURL())
+                                .setFooter(message.member.displayName, message.author.displayAvatarURL())
+                                .setTimestamp()
+                                .setTitle(`Ankkalokit puuttuvat!?`)
+                                .setDescription(`Jos haluat jatkossa saada viestit lokeina piiloon bänneistä, varoituksista, hiljennyksistä ja muista moderaatio toimista niin pistä **Ankkalokit** järjestykseen! Ne saat nopeasti tehtyä käyttämällä komennon \`-ankkalokit\``)
+                            message.author.send(jatkossa)
+
+                            const embed = new MessageEmbed()
+                            .setColor("#ff0000")
+                            .setThumbnail(toBan.user.displayAvatarURL())
+                            .setFooter(message.member.displayName, message.author.displayAvatarURL())
+                            .setTimestamp()
+                            .setTitle(`${message.member.displayName} heitti porttikiellon`)
+                            .setDescription(stripIndents`**Porttikiellon saaja:** ${toBan} 
+                            **- ID:** ${toBan.id}
+                            **- Syy:** ${args.slice(1).join(" ")}`);
+
+                            message.channel.send(embed)
+                        } else {
+                            const ankkaloki = message.member.guild.channels.cache.find(ch => ch.name === 'ankkaloki')
+                            const embed = new MessageEmbed()
+                                .setColor("#ff0000")
+                                .setThumbnail(toBan.user.displayAvatarURL())
+                                .setFooter(message.member.displayName, message.author.displayAvatarURL())
+                                .setTimestamp()
+                                .setTitle(`${message.member.displayName} heitti porttikiellon`)
+                                .setDescription(stripIndents`**Porttikiellon saaja:** ${toBan} 
+                                **- ID:** ${toBan.id}
+                                **- Syy:** ${args.slice(1).join(" ")}`);
+
+                            ankkaloki.send(embed);
+                        }
                 } else if (emoji === "❌") {
                     msg.delete();
 
@@ -73,9 +96,9 @@ module.exports = {
                         .then(m => m.delete({timeout: 5000}));
                 }
             });
-        } else {
-            message.channel.send(`${message.author} KWAAK BITCH!`)
-            .then(msg => msg.delete({timer: 2500}))
+            } else {
+                message.channel.send(`${message.author} KWAAK BITCH!`)
+                .then(msg => msg.delete({timer: 2500}))
+            }
         }
     }
-}

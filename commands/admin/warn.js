@@ -28,7 +28,17 @@ module.exports = {
                 .then(m => m.delete({timeout: 5000}));
             }
 
-            const embed = new MessageEmbed()
+            if(!message.member.guild.channels.cache.find(ch => ch.name === 'ankkaloki')){
+                const jatkossa = new MessageEmbed()
+                    .setColor("RED")
+                    .setThumbnail(client.user.displayAvatarURL())
+                    .setFooter(message.member.displayName, message.author.displayAvatarURL())
+                    .setTimestamp()
+                    .setTitle(`Ankkalokit puuttuvat!?`)
+                    .setDescription(`Jos haluat jatkossa saada viestit lokeina piiloon bänneistä, varoituksista, hiljennyksistä ja muista moderaatio toimista niin pistä **Ankkalokit** järjestykseen! Ne saat nopeasti tehtyä käyttämällä komennon \`-ankkalokit\``)
+                message.author.send(jatkossa)
+
+                const embed = new MessageEmbed()
                 .setColor("#682A43")
                 .setThumbnail(toBan.user.displayAvatarURL())
                 .setFooter(message.member.displayName, message.author.displayAvatarURL())
@@ -37,6 +47,22 @@ module.exports = {
                 .setDescription(stripIndents`**Kiukkuisen viestin saaja:** ${toBan} 
                 **- ID:** ${toBan.id}
                 **- Syy:** ${args.slice(1).join(" ")}`);
+
+                message.channel.send(embed);
+            } else {
+                const ankkaloki = message.member.guild.channels.cache.find(ch => ch.name === 'ankkaloki')
+                const embed = new MessageEmbed()
+                .setColor("#682A43")
+                .setThumbnail(toBan.user.displayAvatarURL())
+                .setFooter(message.member.displayName, message.author.displayAvatarURL())
+                .setTimestamp()
+                .setTitle(`${message.member.displayName} lähetti kiukkuisen viestin :anger:`)
+                .setDescription(stripIndents`**Kiukkuisen viestin saaja:** ${toBan} 
+                **- ID:** ${toBan.id}
+                **- Syy:** ${args.slice(1).join(" ")}`);
+
+                ankkaloki.send(embed);
+            }
 
             const warning = new MessageEmbed()
                 .setColor("#682A43")
@@ -47,7 +73,6 @@ module.exports = {
                 .setDescription(stripIndents`**Kiukkuisen viestin saaja:** **__SINÄ__** 
                 **- Syy:** ${args.slice(1).join(" ")}`);
 
-                message.channel.send(embed);
                 toBan.user.send(warning);
         } else {
             message.channel.send(`${message.author} KWAAK BITCH!`)
