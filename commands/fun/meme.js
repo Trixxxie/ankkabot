@@ -8,10 +8,8 @@ module.exports = {
         message.delete()
 
         let subreddits = [
-            "dank",
             "meme",
-            "memes",
-            "comedyheaven"
+            "memes"
         ]
         let subreddit = subreddits[Math.floor(Math.random()*(subreddits.length))]
         let img = await api(subreddit)
