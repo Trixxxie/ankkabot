@@ -21,6 +21,11 @@
     "common-tags": "^1.8.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "imageapi.js": "^1.0.19",
+    "random-reddit": "^1.1.0",
+    "reddit-fetch": "^1.4.0",
+    "reddit-wrapper-v2": "^1.1.6",
+    "request": "^2.88.2"
   }
 }
