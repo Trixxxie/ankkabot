@@ -2,8 +2,8 @@ const {Discord, MessageEmbed} = require('discord.js');
 const dice = require("d20");
 module.exports = {
     name: "d100",
-    category: "info",
-    description: "Infoa ankasta",
+    category: "pathfinder",
+    description: "Noppa d100",
     run: async (client, message, args) => {
         message.delete()
 
