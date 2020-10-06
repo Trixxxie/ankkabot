@@ -19,13 +19,11 @@
   "dependencies": {
     "ascii-table": "0.0.9",
     "common-tags": "^1.8.0",
+    "d20": "^1.4.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "imageapi.js": "^1.0.19",
-    "random-reddit": "^1.1.0",
-    "reddit-fetch": "^1.4.0",
-    "reddit-wrapper-v2": "^1.1.6",
-    "request": "^2.88.2"
+    "reddit-fetch": "^1.4.0"
   }
 }
