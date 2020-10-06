@@ -23,7 +23,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle(`${message.member.displayName} generoi statit (4d6)`)
-            .setColor("#CC9966")
+            .setColor(message.member.displayColor)
             .setFooter(message.member.displayName, message.author.displayAvatarURL())
             .setTimestamp()
             .setDescription(stripIndents`\`${valmis1[0]}\` \`${valmis1[1]}\` \`${valmis1[2]}\` \`Yhteensä ${valmis1[0] + valmis1[1] + valmis1[2]}\`
